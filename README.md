@@ -18,45 +18,55 @@ A brief description of the application here. Lorem ipsum dolor sit amet, consect
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [X] Proper use of Markdown
+- [X] A concise and compelling elevator pitch
+- [X] Description of key features
+- [X] Description of how you will use each technology
+- [X] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Simple RPGs and Idle games are very popular, having a game you can make progress on in the background or on a second monitor while you work on other things is easier to do for busy people and much lower stress than a lot of games can be. But most such games are totally singleplayer even when it is something a whole friend or work group could be enjoying. The Second Monitor RPG is a simple idle rpg that can be played fully in the browser and with friends, allowing you to assist each other with progress and defeating bosses.
 
 ### Design
 
-![Design image](placeholder.png)
+![GameplayUI Mockup](Mockup1.png)
+![RPGUI Mockup](Mockup2.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Gameplay will be handled idly, with defeating enemies earning you items and currency for upgrades. A button to join all active players for a major fight allows cooperative play. 
 
 ```mermaid
 sequenceDiagram
-    actor You
+    actor Player1
+    actor Player2
     actor Website
-    You->>Website: Replace this with your design
+    Player1->>Website: Upgrade and Item Choices
+    Player2->>Website: Upgrade and Item Choices
+    Website -->>Player1: Character Data
+    Website -->>Player2: Character Data
 ```
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Idle gameplay perfect for leaving in the background
+- Cooperation with other players
+- Equipable items
+- Upgrades via currency
+- Leaderboard to show player progress
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Uses correct HTML for application. Provides layout for login, main gameplay, upgrades, and coop play pages.
+- **CSS** - Styling for clean ui and effects. Works on multiple screen sizes and formats.
+- **React** - Manages the application state for current activity, uses React routing to change views based on player actions, and calls backend to fetch character data and update resources.
+- **Service** - Backend service with endpoints for:
+  - login
+  - updating progression progress
+  - joining cooperative sessions
+- **DB/Login** - Stores character data. Saves idle progress so players can return later and receive rewards based on time gone. Tracks player leaderboard.
+- **WebSocket** - Uses Websocket to provide real-time updates during cooperative play. Broadcasts leaderboard changes to all players.
 
 ## 🚀 AWS deliverable
 

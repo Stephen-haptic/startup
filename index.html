@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Tell browsers not to scale the viewport automatically -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Second Monitor HTML</title>
+    <!-- <link rel="icon" href="favicon.ico" /> Icon Placeheld-->
+  </head>
+  <body>
+    <!-- Use header, main, and footer elements to give semantic structure -->
+    <header>
+      <h1>Second Monitor RPG</h1>
+
+      <!-- Navigation elements -->
+      <nav>
+        <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
+        <menu>
+          <li><a href="index.html">Login</a></li>
+          <li><a href="play.html">Play</a></li>
+          <li><a href="character.html">Character Sheet</a></li>
+          <li><a href="scores.html">Leaderboard</a></li>
+          <li><a href="raid.html">Raid Boss</a></li>
+        </menu>
+      </nav>
+
+      <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
+      <hr />
+    </header>
+
+    <main>
+      <h1>Welcome to Simon Says</h1>
+      <form method="get" action="play.html">
+        <div>
+          <span>Character Name</span>
+          <input type="text" placeholder="Scrungly the Bold" />
+        </div>
+        <div>
+          <span>Password</span>
+          <input type="password" placeholder="password" />
+        </div>
+        <button type="submit">Login</button>
+        <button type="submit">Create</button>
+      </form>
+    </main>
+
+    <footer>
+      <hr />
+      <span class="text-reset">Stephen Gantt</span>
+      <br />
+      <a href="https://github.com/Stephen-haptic/startup.git">GitHub</a>
+    </footer>
+  </body>
+</html>

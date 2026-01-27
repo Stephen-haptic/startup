@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Idle Combat</title>
+</head>
+<body>
+
+    <header>
+        <h1>Second Monitor RPG</h1>
+
+        <!-- Navigation elements -->
+        <nav>
+            <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
+            <menu>
+            <li><a href="index.html">Login</a></li>
+            <li><a href="play.html">Play</a></li>
+            <li><a href="character.html">Character Sheet</a></li>
+            <li><a href="scores.html">Leaderboard</a></li>
+            <li><a href="raid.html">Raid Boss</a></li>
+            </menu>
+        </nav>
+        <h1>Encounter</h1>
+        <p id="experience">
+            Experience: <strong>120</strong>
+        </p>
+    </header>
+
+    <main>
+
+        <!-- Enemy Display -->
+        <section id="enemy">
+
+            <h2 id="enemy-name">Goblin Placeholder</h2>
+
+            <!-- Enemy visual container -->
+            <div id="enemy-visual">
+
+                <img
+                    src="placeholder-enemy.png"
+                    alt="Enemy placeholder image"
+                >
+
+                <!-- Damage numbers will be injected here later -->
+            </div>
+
+            <!-- Enemy Health -->
+            <p>Health</p>
+            <progress 
+                id="enemy-health"
+                value="75" 
+                max="100">
+            </progress>
+            <p>75 / 100</p>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <hr />
+        <span class="text-reset">Stephen Gantt</span>
+        <br />
+        <a href="https://github.com/Stephen-haptic/startup.git">GitHub</a>
+    </footer>
+
+</body>
+</html>

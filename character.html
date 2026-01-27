@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Character Sheet</title>
+</head>
+<body>
+
+    <header>
+        <h1>Second Monitor RPG</h1>
+
+        <!-- Navigation elements -->
+        <nav>
+            <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
+            <menu>
+            <li><a href="index.html">Login</a></li>
+            <li><a href="play.html">Play</a></li>
+            <li><a href="character.html">Character Sheet</a></li>
+            <li><a href="scores.html">Leaderboard</a></li>
+            <li><a href="raid.html">Raid Boss</a></li>
+            </menu>
+        </nav>
+
+        <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
+        <hr />
+        <h1>Player Character Sheet</h1>
+        <p>Name: <strong>Placeholder Hero</strong></p>
+        <p>Class: <strong>Warrior</strong></p>
+        <p>Level: <strong>1</strong></p>
+    </header>
+
+    <main>
+
+        <!-- Inventory Section -->
+        <section id="inventory">
+            <h2>Inventory</h2>
+
+            <ul>
+                <li>Sword</li>
+                <li>Shield</li>
+                <li>Wizard Staff</li>
+            </ul>
+        </section>
+
+        <!-- Stats Section -->
+        <section id="stats">
+            <h2>Stats</h2>
+
+            <table>
+                <tr>
+                    <th>Stat</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Vitality</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>Wizardry</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>Strength</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>All Trades</td>
+                    <td>7</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Level Up Section -->
+        <section id="level-up">
+            <h2>Level Up</h2>
+
+            <p>Experience: 1754</p>
+
+            <p>Level Cost: 754</p>
+
+            <ul>
+                <li>
+                    Vitality
+                    <button type="button">+</button>
+                </li>
+                <li>
+                    Wizardry
+                    <button type="button">+</button>
+                </li>
+                <li>
+                    Strength
+                    <button type="button">+</button>
+                </li>
+                <li>
+                    All Trades
+                    <button type="button">+</button>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <hr />
+        <span class="text-reset">Stephen Gantt</span>
+        <br />
+        <a href="https://github.com/Stephen-haptic/startup.git">GitHub</a>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Public Raid</title>
+</head>
+<body>
+
+    <header>
+        <h1>Second Monitor RPG</h1>
+
+        <!-- Navigation elements -->
+        <nav>
+            <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
+            <menu>
+            <li><a href="index.html">Login</a></li>
+            <li><a href="play.html">Play</a></li>
+            <li><a href="character.html">Character Sheet</a></li>
+            <li><a href="scores.html">Leaderboard</a></li>
+            <li><a href="raid.html">Raid Boss</a></li>
+            </menu>
+        </nav>
+        <h1>Public Raid</h1>
+
+        <!-- Shared XP / Currency Tracker -->
+        <p id="experience">
+            Experience: <strong>120</strong>
+        </p>
+    </header>
+
+    <main>
+
+        <!-- Raid Boss Section -->
+        <section id="raid-boss">
+
+            <h2 id="enemy-name">World Boss Placeholder</h2>
+
+            <div id="enemy-visual">
+                <img
+                    src="placeholder-raid-boss.png"
+                    alt="Raid boss placeholder image"
+                >
+                <!-- Floating damage numbers will appear here -->
+            </div>
+
+            <p>Health</p>
+            <progress id="enemy-health" value="8500" max="10000"></progress>
+            <p>8,500 / 10,000</p>
+
+        </section>
+
+        <!-- Active Players -->
+        <section id="raid-players">
+            <h2>Players in Raid</h2>
+
+            <ul>
+                <li>PlayerOne</li>
+                <li>PlayerTwo</li>
+                <li>PlayerThree</li>
+                <li>You</li>
+            </ul>
+
+            <p><em>Players will join and leave dynamically.</em></p>
+        </section>
+
+        <!-- Raid Rewards -->
+        <section id="raid-rewards">
+            <h2>Rewards</h2>
+
+            <ul>
+                <li>Experience: 1,000</li>
+                <li>Rare Item (Placeholder)</li>
+            </ul>
+
+            <p><em>Rewards are granted when the boss is defeated.</em></p>
+        </section>
+
+    </main>
+
+    <footer>
+      <hr />
+      <span class="text-reset">Stephen Gantt</span>
+      <br />
+      <a href="https://github.com/Stephen-haptic/startup.git">GitHub</a>
+    </footer>
+
+</body>
+</html>

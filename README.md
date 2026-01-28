@@ -76,17 +76,17 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ## 🚀 HTML deliverable
 
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+For this deliverable I set up the structure of my application using HTML. (Dear TAs, please be merciful for me not having spread my commits over the whole deliverable period, I am still figuring out my assigment schedule with my classes)
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - 5 HTML pages for login, main gameplay, character sheet, leaderboard, and coop boss fights.
+- [x] **Proper HTML element usage** - I used HTML tags such as BODY, MAIN, HEADER, NAV, FOOTER, MENU, BUTTON, LI, and ect. 
+- [x] **Links** - Set up links between all the pages as well as the login page linking directly to the main play page.
+- [x] **Text** - Every page has text for describing the character and enemies, as well as level up choices.
+- [x] **3rd party API placeholder** - The enemy and boss names will be generated using name generator API.
+- [x] **Images** - Enemies and Bosses will have images, currently marked with placeholders.
+- [x] **Login placeholder** - Login based on character name and password will direct you right into the main play page.
+- [x] **DB data placeholder** - The character sheet will use the database to store and call character info.
+- [x] **WebSocket placeholder** - The leaderboard and coop pages will use Websocket to update information in real-time
 
 ## 🚀 CSS deliverable
 

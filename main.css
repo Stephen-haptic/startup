@@ -19,6 +19,7 @@ header {
 
     width: 100%;
     height: var(--header-height);
+    z-index: 1000;
 
     background-color: rgb(163, 37, 37);
     color: white;

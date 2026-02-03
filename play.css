@@ -1,0 +1,84 @@
+main {
+    margin-top: var(--header-height);
+    margin-bottom: var(--footer-height);
+
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: #e0e0e0;
+
+    position: relative;
+}
+
+#experience {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+#encounter-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+#enemy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    background-color: #f0f0f0;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+}
+
+#enemy-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+#enemy-visual {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+#enemy-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#enemy-health {
+    width: 100%;
+    height: 20px;
+    accent-color: #b22222;
+    margin-bottom: 0.5rem;
+}
+
+#enemy + p {
+    margin-top: 0;
+    font-weight: bold;
+}
+
+#actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+#actions .btn {
+    flex: 1;
+    max-width: 120px;
+}

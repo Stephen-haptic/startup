@@ -1,0 +1,152 @@
+:root {
+    --header-height: 120px;
+    --footer-height: 60px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: var(--header-height);
+
+    background-color: red;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 1rem 1.5rem;
+
+    border-bottom: 7px solid #8b0000;
+}
+
+header h1 {
+    margin: 0 0 1rem 0;
+    padding-bottom: 0.5rem;
+
+    font-size: 1.4rem;
+
+    border-bottom: 2px solid white;
+    width: 100%;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu li {
+    display: inline;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-menu a:hover {
+    text-decoration: underline;
+}
+
+main {
+    margin-top: var(--header-height);
+    margin-bottom: var(--footer-height);
+
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #e0e0e0;
+    padding: 2rem;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: var(--footer-height);
+
+    background-color: black;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: white;
+}
+
+.btn {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+}
+
+.btn-primary {
+    background-color: #b22222;
+    border-color: #8b1a1a;
+}
+
+.btn-primary:hover {
+    background-color: #8b1a1a;
+    border-color: #6e1414;
+}
+
+.btn-secondary {
+    background-color: #555555;
+    border-color: #3a3a3a;
+}
+
+.btn-secondary:hover {
+    background-color: #3a3a3a;
+    border-color: #222222;
+}
+
+.btn-rpg {
+    background-color: #b22222;
+    border: 2px solid #8b1a1a;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-rpg:hover {
+    background-color: #8b1a1a;
+    border-color: #6e1414;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.form-buttons .btn {
+    flex: 1;
+    max-width: 150px;
+}

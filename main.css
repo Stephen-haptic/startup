@@ -20,7 +20,7 @@ header {
     width: 100%;
     height: var(--header-height);
 
-    background-color: red;
+    background-color: rgb(163, 37, 37);
     color: white;
 
     display: flex;
@@ -29,7 +29,7 @@ header {
 
     padding: 1rem 1.5rem;
 
-    border-bottom: 7px solid #8b0000;
+    border-bottom: 7px solid #680000;
 }
 
 header h1 {
@@ -59,6 +59,12 @@ header h1 {
     color: white;
     text-decoration: none;
     font-weight: bold;
+}
+
+.nav-menu a.active-link {
+    color: #b1b1b1;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .nav-menu a:hover {

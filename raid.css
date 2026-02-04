@@ -1,27 +1,20 @@
-/* ------------------------------------ */
-/* Main takes full space under header/footer */
 main {
-    margin-top: var(--header-height); /* push main below fixed header */
-    margin-bottom: var(--footer-height); /* optional, keep above footer */
+    margin-top: var(--header-height);
+    margin-bottom: var(--footer-height);
     padding: 0; 
     width: 100%;
     height: calc(100vh - var(--header-height) - var(--footer-height));
 }
 
-
-/* ------------------------------------ */
-/* Container for three panels */
 .raid-container {
     display: flex;
     width: 100%;
     height: 100%;
-    padding: 1rem 2rem; /* top/bottom 1rem, left/right 2rem for breathing room */
-    gap: 1rem; /* space between columns */
+    padding: 1rem 2rem;
+    gap: 1rem;
     box-sizing: border-box;
 }
 
-/* ------------------------------------ */
-/* Base panel styles */
 .raid-panel {
     border-radius: 12px;
     padding: 1.5rem;
@@ -30,26 +23,22 @@ main {
     box-shadow: 0 6px 18px rgba(0,0,0,0.7);
 }
 
-/* ------------------------------------ */
-/* Left panel: black */
 .raid-left {
     background-color: #111;
     color: white;
     border: 2px solid #333;
     width: 200px;
-    flex-shrink: 0; /* fixed width */
-    height: 100%; /* fill vertical space */
+    flex-shrink: 0;
+    height: 100%;
 }
 
-/* ------------------------------------ */
-/* Right panel: black */
 .raid-right {
     background-color: #111;
     color: white;
     border: 2px solid #333;
     width: 200px;
-    flex-shrink: 0; /* fixed width */
-    height: 100%; /* fill vertical space */
+    flex-shrink: 0;
+    height: 100%;
 }
 
 .raid-center {

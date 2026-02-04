@@ -90,14 +90,14 @@ For this deliverable I set up the structure of my application using HTML. (Dear 
 
 ## 🚀 CSS deliverable
 
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+For this deliverable I styled the application into a state I am happy with.
 
-- [ ] **Header, footer, and main content body** - I did not complete this part of the deliverable.
-- [ ] **Navigation elements** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing** - I did not complete this part of the deliverable.
-- [ ] **Application elements** - I did not complete this part of the deliverable.
-- [ ] **Application text content** - I did not complete this part of the deliverable.
-- [ ] **Application images** - I did not complete this part of the deliverable.
+- [x] **Header, footer, and main content body** - I customed the header, footer, and main body for all the pages, with a consistent header and footer for navigation and redirection to my github.
+- [x] **Navigation elements** - Every page has a consistent navigation bar which shows the currently active page.
+- [x] **Responsive to window resizing** - I did my best to make all pages work no matter how the window is resized. I struggled with the raid page, it may still have issues on really small windows.
+- [x] **Application elements** - Used grids, forms, and columns to arranged application elements in a visually pleasing manner.
+- [x] **Application text content** - Organized and placed text to look good as well as utilized two important fonts, Playfair Display and Merryweather, to improve the look of the application.
+- [x] **Application images** - I don't yet have images made to be used in the application, but I do have locations for those images to go already blocked out and planned, not sure if that counts.
 
 ## 🚀 React part 1: Routing deliverable
 

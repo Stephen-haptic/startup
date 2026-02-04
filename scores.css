@@ -1,0 +1,84 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main > .leaderboard-panel {
+    width: calc(100% - 4rem);
+    max-width: 1100px;
+    height: calc(100vh - var(--header-height) - var(--footer-height) - 4rem);
+
+    background-color: #111;
+    color: white;
+
+    border-radius: 12px;
+    border: 2px solid #333;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.7);
+
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.leaderboard-panel h1 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    text-align: center;
+}
+
+.leaderboard-panel p {
+    text-align: center;
+    color: #ccc;
+    margin-bottom: 1rem;
+}
+
+.leaderboard-table-wrapper {
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 1rem;
+}
+
+.leaderboard-table-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.leaderboard-table-wrapper::-webkit-scrollbar-track {
+    background: #111;
+}
+
+.leaderboard-table-wrapper::-webkit-scrollbar-thumb {
+    background-color: #444;
+    border-radius: 4px;
+}
+
+.leaderboard-panel table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: transparent;
+}
+
+.leaderboard-panel thead {
+    border-bottom: 2px solid #444;
+}
+
+.leaderboard-panel th {
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.leaderboard-panel tbody tr {
+    border-bottom: 1px solid #333;
+}
+
+/* Last row (player) Likely need to tweak later if player is high ranked*/
+.leaderboard-panel tbody tr:last-child {
+    border-bottom: none;
+    font-weight: bold;
+    color: #ffd700;
+}
+
+.leaderboard-panel td {
+    padding: 0.6rem 0.75rem;
+}

@@ -4,7 +4,7 @@ import './raid.css';
 
 export function Raid() {
   return (
-    <main>
+    <main className="raid-main">
         <div class="raid-container">
 
             {/* Left Column: Active Players */}

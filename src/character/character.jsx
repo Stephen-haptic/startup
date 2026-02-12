@@ -4,7 +4,7 @@ import './character.css';
 
 export function Character() {
   return (
-        <main>
+        <main className="character-main">
 
         <section id="character-info">
             <h2>Character Sheet</h2>

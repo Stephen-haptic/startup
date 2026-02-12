@@ -11,18 +11,9 @@ form {
     width: 100%;
 }
 
-.form-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.form-buttons .btn {
-    flex: 1;
-    max-width: 150px;
-}
-
 .index-container {
     max-width: 500px;
     width: 100%;
+    margin: 0 auto;
+    text-align: center;
 }

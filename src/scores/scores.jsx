@@ -4,7 +4,7 @@ import './scores.css';
 
 export function Scores() {
   return (
-    <main>
+    <main className="scores-main">
 
         <div className="leaderboard-panel">
             <h1>Leaderboard</h1>

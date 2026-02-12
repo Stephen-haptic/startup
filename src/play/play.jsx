@@ -4,7 +4,7 @@ import './play.css';
 
 export function Play() {
   return (
-    <main>
+    <main className="play-main">
 
         <p id="experience">
             Experience: <strong>120</strong>

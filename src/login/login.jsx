@@ -4,8 +4,8 @@ import './login.css';
 
 export function Login() {
   return (
-      <main>
-        <div className="index-container d-flex flex-column align-items-center">
+      <main className="login-main">
+        <div className="index-container">
             <h1>Enter the Second Monitor!</h1>
             <form method="get" action="play.html">
                 <div className="mb-3">

@@ -21,3 +21,8 @@ form {
     flex: 1;
     max-width: 150px;
 }
+
+.index-container {
+    max-width: 500px;
+    width: 100%;
+}

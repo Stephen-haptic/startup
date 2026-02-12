@@ -13,17 +13,17 @@ import { Character } from './character/character';
 export default function App() {
   return (
     <BrowserRouter>
-        <div className="body bg-dark text-light">
+        <div className="body bg-dark">
             <header>
                 <h1>Second Monitor RPG</h1>
 
                 <nav>
                     <ul className="nav-menu">
-                        <li><NavLink className='nav-link' to=''>Login</NavLink></li>
-                        <li><NavLink className='nav-link' to='play'>Play</NavLink></li>
-                        <li><NavLink className='nav-link' to='character'>Character Sheet</NavLink></li>
-                        <li><NavLink className='nav-link' to='scores'>Leaderboard</NavLink></li>
-                        <li><NavLink className='nav-link' to='raid'>Raid Boss</NavLink></li>
+                        <li><NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""}`}>Login</NavLink></li>
+                        <li><NavLink to="play" className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""}`}>Play</NavLink></li>
+                        <li><NavLink to="character" className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""}`}>Character Sheet</NavLink></li>
+                        <li><NavLink to="scores" className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""}`}>Leaderboard</NavLink></li>
+                        <li><NavLink to="raid" className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""}`}>Raid Boss</NavLink></li>
                     </ul>
                 </nav>
             </header>

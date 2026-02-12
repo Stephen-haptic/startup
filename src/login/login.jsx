@@ -9,7 +9,7 @@ export function Login() {
             <h1>Enter the Second Monitor!</h1>
             <form method="get" action="play.html">
                 <div className="mb-3">
-                    <label class="form-label">Character Name</label>
+                    <label className="form-label">Character Name</label>
                     <input type="text" className="form-control" placeholder="Scrungly the Bold" />
                 </div>
 

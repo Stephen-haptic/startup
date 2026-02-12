@@ -38,9 +38,9 @@ export function Play() {
             <p>75 / 100</p>
 
         </section>
-        <div id="actions" class="d-flex gap-2 mt-3">
-            <button class="btn btn-rpg">Attack</button>
-            <button class="btn btn-secondary">Defend</button>
+        <div id="actions" className="d-flex gap-2 mt-3">
+            <button className="btn btn-rpg">Attack</button>
+            <button className="btn btn-secondary">Defend</button>
         </div>
 
     </main>

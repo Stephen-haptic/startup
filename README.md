@@ -101,11 +101,11 @@ For this deliverable I styled the application into a state I am happy with.
 
 ## 🚀 React part 1: Routing deliverable
 
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+For this deliverable I ported the html to react with a router and properly functioning components.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+- [X] **Bundled using Vite** - Completed
+- [X] **Components** - I have components for the login, character sheet, play space, raid boss, and scores, as well as the app of course.
+- [X] **Router** - Routing between pages.
 
 ## 🚀 React part 2: Reactivity deliverable
 

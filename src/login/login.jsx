@@ -1,38 +1,39 @@
 import React from 'react';
 
 import './login.css';
-import { useNavigate } from 'react-router-dom';
 
-export function Login() {
+import { Authenticated } from './authenticated';
+import { Unauthenticated } from './unauthenticated';
+import { AuthState } from './authState';
 
-    const navigate = useNavigate();
+export function Login({ userName, authState, onAuthChange }) {
+  return (
+    <main className="login-main">
+      <div className="index-container">
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        navigate('/play');
-    }
+        {authState !== AuthState.Unknown && (
+          <h1>Enter the Second Monitor!</h1>
+        )}
 
-    return (
-        <main className="login-main">
-            <div className="index-container">
-                <h1>Enter the Second Monitor!</h1>
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <label className="form-label">Character Name</label>
-                        <input type="text" className="form-control" placeholder="Scrungly the Bold" />
-                    </div>
+        {authState === AuthState.Authenticated && (
+          <Authenticated
+            userName={userName}
+            onLogout={() =>
+              onAuthChange(userName, AuthState.Unauthenticated)
+            }
+          />
+        )}
 
-                    <div className="mb-3">
-                        <label className="form-label">Password</label>
-                        <input type="password" className="form-control" placeholder="password" />
-                    </div>
+        {authState === AuthState.Unauthenticated && (
+          <Unauthenticated
+            userName={userName}
+            onLogin={(loginUserName) =>
+              onAuthChange(loginUserName, AuthState.Authenticated)
+            }
+          />
+        )}
 
-                    <div className="form-buttons">
-                        <button type="submit" className="btn btn-rpg">Login</button>
-                        <button type="submit" className="btn btn-secondary">Create</button>
-                    </div>
-                </form>
-            </div>
-        </main>
-    );
+      </div>
+    </main>
+  );
 }

@@ -84,7 +84,7 @@ export default function App() {
           />
 
           <Route path='/play' element={<Play userName={userName} />} />
-          <Route path='/scores' element={<Scores />} />
+          <Route path='/scores' element={<Scores userName={userName} />} />
           <Route path='/raid' element={<Raid userName={userName} />} />
           <Route path='/character' element={<Character userName={userName} />} />
           <Route path='*' element={<NotFound />} />

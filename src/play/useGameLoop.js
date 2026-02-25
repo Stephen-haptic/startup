@@ -10,8 +10,30 @@ export function useGameLoop() {
   const clickDamage = 10;
 
   useEffect(() => {
-    spawnEnemy(enemyNumber);
+    const savedGame = localStorage.getItem('idleRpgSave');
+
+    if (savedGame) {
+        const data = JSON.parse(savedGame);
+
+        setEnemy(data.enemy);
+        setEnemyNumber(data.enemyNumber);
+        setExperience(data.experience);
+    } else {
+        spawnEnemy(1);
+    }
   }, []);
+
+  useEffect(() => {
+    if (!enemy) return;
+
+    const saveData = {
+        enemy,
+        enemyNumber,
+        experience
+    };
+
+    localStorage.setItem('idleRpgSave', JSON.stringify(saveData));
+  }, [enemy, enemyNumber, experience]);
 
   useEffect(() => {
     const loop = setInterval(() => {

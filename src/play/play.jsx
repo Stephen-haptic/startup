@@ -1,19 +1,16 @@
-import React from 'react';
-import { useGameLoop } from './useGameLoop';
-import { Enemy } from './enemy';
+import React from "react";
+import { useGameLoop } from "./useGameLoop";
+import { Enemy } from "./enemy";
+import { useExperience } from "../useExperience";
 
-import './play.css';
+import "./play.css";
 
 export function Play() {
-  const {
-    enemy,
-    experience,
-    attack
-  } = useGameLoop();
+  const { enemy, attack } = useGameLoop();
+  const { experience } = useExperience();
 
   return (
     <main className="play-main">
-
       <p id="experience">
         Experience: <strong>{experience}</strong>
       </p>
@@ -27,7 +24,6 @@ export function Play() {
           Attack
         </button>
       </div>
-
     </main>
   );
 }

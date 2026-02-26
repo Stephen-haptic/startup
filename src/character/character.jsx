@@ -1,16 +1,18 @@
 import React from 'react';
 
 import './character.css';
+import { useCharacter } from './characterInfo';
 
 export function Character() {
-  return (
+    const { character, updateStat, equipWeapon } = useCharacter();
+    return (
         <main className="character-main">
 
         <section id="character-info">
             <h2>Character Sheet</h2>
-            <p>Name: <strong>Placeholder Hero</strong></p>
-            <p>Class: <strong>Warrior</strong></p>
-            <p>Level: <strong>1</strong></p>
+            <p>Name: <strong>{character.name}</strong></p>
+            <p>Class: <strong>{character.class}</strong></p>
+            <p>Level: <strong>{character.level}</strong></p>
             <p>Experience: 1754</p>
 
         </section>
@@ -21,7 +23,6 @@ export function Character() {
 
             <ul>
                 <li>Sword</li>
-                <li>Shield</li>
                 <li>Wizard Staff</li>
             </ul>
         </section>
@@ -36,20 +37,16 @@ export function Character() {
                     <th>Value</th>
                 </tr>
                 <tr>
-                    <td>Vitality</td>
-                    <td>10</td>
-                </tr>
-                <tr>
                     <td>Wizardry</td>
-                    <td>8</td>
+                    <td>{character.stats.wizardry}</td>
                 </tr>
                 <tr>
                     <td>Strength</td>
-                    <td>6</td>
+                    <td>{character.stats.strength}</td>
                 </tr>
                 <tr>
                     <td>All Trades</td>
-                    <td>7</td>
+                    <td>{character.stats.allTrades}</td>
                 </tr>
             </table>
         </section>
@@ -60,20 +57,16 @@ export function Character() {
 
             <ul>
                 <li>
-                    Vitality
-                    <button type="button">+</button>
-                </li>
-                <li>
                     Wizardry
-                    <button type="button">+</button>
+                    <button onClick={() => updateStat("wizardry")}>+</button>
                 </li>
                 <li>
                     Strength
-                    <button type="button">+</button>
+                    <button onClick={() => updateStat("strength")}>+</button>
                 </li>
                 <li>
                     All Trades
-                    <button type="button">+</button>
+                    <button onClick={() => updateStat("allTrades")}>+</button>
                 </li>
             </ul>
         </section>

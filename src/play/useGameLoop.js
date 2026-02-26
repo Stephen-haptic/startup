@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { generateEnemy } from './enemyService';
+import { useCharacter } from '../character/characterInfo';
+import { calculatePassiveDamage } from '../character/calculateDamage';
 
 export function useGameLoop() {
   const [enemy, setEnemy] = useState(null);
   const [enemyNumber, setEnemyNumber] = useState(1);
   const [experience, setExperience] = useState(0);
+  const { character } = useCharacter();
 
-  const passiveDamage = 2;
   const clickDamage = 10;
 
   useEffect(() => {
@@ -36,12 +38,15 @@ export function useGameLoop() {
   }, [enemy, enemyNumber, experience]);
 
   useEffect(() => {
+    if (!enemy || !character) return;
+
     const loop = setInterval(() => {
-      damageEnemy(passiveDamage);
+      const damage = calculatePassiveDamage(character);
+      damageEnemy(damage);
     }, 1000);
 
     return () => clearInterval(loop);
-  }, [enemy]);
+  }, [enemy, character]);
 
   async function spawnEnemy(number) {
     const newEnemy = await generateEnemy(number);

@@ -8,9 +8,9 @@ const defaultCharacter = {
   class: "Adventurer",
   level: 0, 
   stats: {
-    wizardry: 8,
-    strength: 6,
-    allTrades: 7,
+    wizardry: 1,
+    strength: 1,
+    allTrades: 1,
   },
   weapon: {
     type: "wizardry", // "wizardry" | "strength"

@@ -1,5 +1,6 @@
 import React from "react";
 import { useCharacter } from "./useCharacter";
+import { getWeaponDisplayName } from "./weaponDisplay";
 import { useExperience } from "../useExperience";
 import "./character.css";
 
@@ -35,13 +36,16 @@ export function Character() {
                 className={character.weapon.type === "wizardry" ? "equipped" : ""}
                 onClick={() => equipWeapon("wizardry")}
                 >
-                Wizard Staff (Lower Base Damage, Higher Scaling)
+                {getWeaponDisplayName(character, "wizardry")}
+                {" "} (Lower Base Damage, Higher Scaling)
                 </li>
+
                 <li
                 className={character.weapon.type === "strength" ? "equipped" : ""}
                 onClick={() => equipWeapon("strength")}
                 >
-                Sword (higher Base Damage, Lower Scaling)
+                {getWeaponDisplayName(character, "strength")}
+                {" "} (Higher Base Damage, Lower Scaling)
                 </li>
             </ul>
         </section>

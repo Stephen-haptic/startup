@@ -39,7 +39,6 @@ export function useGameLoop() {
   }, [enemy, character]);
 
   async function spawnEnemy(number) {
-    const { generateEnemy } = await import("./enemyService");
     const newEnemy = await generateEnemy(number);
     setEnemy(newEnemy);
   }

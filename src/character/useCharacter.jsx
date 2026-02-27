@@ -12,6 +12,16 @@ const defaultCharacter = {
     strength: 1,
     allTrades: 1,
   },
+  weaponUpgrades: {
+    wizardry: {
+      baseDamageBonus: 0,
+      scalingBonus: 0,
+    },
+    strength: {
+      baseDamageBonus: 0,
+      scalingBonus: 0,
+    }
+  },
   weapon: {
     type: "wizardry", // "wizardry" | "strength"
   }
@@ -23,7 +33,30 @@ export function useCharacter() {
   // Load save
   useEffect(() => {
     const saved = localStorage.getItem("idleCharacter");
-    if (saved) setCharacter(JSON.parse(saved));
+
+    if (!saved) return;
+
+    const parsed = JSON.parse(saved);
+
+    // Merge saves with defaults
+    setCharacter({
+      ...defaultCharacter,
+      ...parsed,
+      stats: {
+        ...defaultCharacter.stats,
+        ...parsed.stats,
+      },
+      weaponUpgrades: {
+        wizardry: {
+          ...defaultCharacter.weaponUpgrades.wizardry,
+          ...parsed.weaponUpgrades?.wizardry,
+        },
+        strength: {
+          ...defaultCharacter.weaponUpgrades.strength,
+          ...parsed.weaponUpgrades?.strength,
+        },
+      },
+    });
   }, []);
 
   // Save character

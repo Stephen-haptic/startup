@@ -90,10 +90,38 @@ export function useCharacter() {
     return true;
   }
 
+  function applyWeaponUpgrade(type) {
+    setCharacter((prev) => {
+      const upgrade = prev.weaponUpgrades[type];
+
+      if (!upgrade) return prev;
+
+      const baseIncrease =
+        type === "wizardry" ? 1 : 8;
+
+      const scalingIncrease =
+        type === "wizardry" ? 0.5 : 0.1;
+
+      return {
+        ...prev,
+        weaponUpgrades: {
+          ...prev.weaponUpgrades,
+          [type]: {
+            baseDamageBonus:
+              upgrade.baseDamageBonus + baseIncrease,
+            scalingBonus:
+              upgrade.scalingBonus + scalingIncrease,
+          },
+        },
+      };
+    });
+  }
+
   return {
     character,
     equipWeapon,
     buyStat,
+    applyWeaponUpgrade,
     BASE_STAT_COST,
     STAT_COST_INCREMENT
   };

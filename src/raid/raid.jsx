@@ -9,7 +9,8 @@ export function Raid() {
     joinRaid,
     bossHealth,
     bossMaxHealth,
-    countdown
+    countdown,
+    nextReward
   } = useRaid();
 
   // HH:MM:SS formatter
@@ -19,6 +20,11 @@ export function Raid() {
     const s = Math.floor(seconds % 60).toString().padStart(2, "0");
     return `${h}:${m}:${s}`;
   };
+
+  const rewardLabel = 
+    nextReward === "strength"
+      ? "Sword Upgrade"
+      : "Staff Upgrade";
 
   return (
     <main className="raid-main">
@@ -74,7 +80,7 @@ export function Raid() {
           <h2>Rewards</h2>
           <ul>
             <li>Experience: 1,000</li>
-            <li>Rare Item (Placeholder)</li>
+            <li>{rewardLabel}</li>
           </ul>
           <p><em>Rewards are granted when the boss is defeated.</em></p>
         </section>

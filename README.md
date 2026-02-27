@@ -109,10 +109,10 @@ For this deliverable I ported the html to react with a router and properly funct
 
 ## 🚀 React part 2: Reactivity deliverable
 
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+For this deliverable I used JavaScript and React so the application can be played with mockups for the raid boss and leaderboard.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [X] **All functionality implemented or mocked out** - The basic play screen and player sheet is working as intended, the raid screen works solo and the leaderboard is mocked out for the future.
+- [X] **Hooks** - I used useState and useEffect for the application.
 
 ## 🚀 Service deliverable
 

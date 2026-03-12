@@ -1,8 +1,4 @@
-import { generateEnemy } from './enemyService';
-
-const SAVE_KEY = 'idleRpgSave';
-
-export function saveGame(enemy, enemyNumber, experience) {
+export async function saveGame(enemy, enemyNumber, experience) {
   if (!enemy) return;
 
   const data = {
@@ -11,33 +7,37 @@ export function saveGame(enemy, enemyNumber, experience) {
     experience,
   };
 
-  localStorage.setItem(SAVE_KEY, JSON.stringify(data));
+  try {
+    await fetch('/api/player', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+  } catch {
+    console.warn('Failed to save game');
+  }
 }
 
 export async function loadGame() {
-  const saved = localStorage.getItem(SAVE_KEY);
-
-  if (!saved) {
-    const enemy = await generateEnemy(1);
-    return {
-      enemy,
-      enemyNumber: 1,
-      experience: 0,
-    };
-  }
-
   try {
-    const data = JSON.parse(saved);
+    const res = await fetch('/api/player');
+
+    if (!res.ok) throw new Error();
+
+    const data = await res.json();
 
     return {
       enemy: data.enemy,
       enemyNumber: data.enemyNumber,
       experience: data.experience,
     };
+
   } catch {
-    const enemy = await generateEnemy(1);
+
     return {
-      enemy,
+      enemy: null,
       enemyNumber: 1,
       experience: 0,
     };

@@ -14,14 +14,20 @@ export function useGameLoop() {
 
   useEffect(() => {
     async function init() {
-      const passive = character ? calculatePassiveDamage(character) : 2;
-      const data = await loadGame(passive);
-      setEnemy(data.enemy);
-      setEnemyNumber(data.enemyNumber);
+      const data = await loadGame();
+
+      if (data.enemy) {
+        setEnemy(data.enemy);
+        setEnemyNumber(data.enemyNumber);
+      } else {
+        const firstEnemy = await generateEnemy(1);
+        setEnemy(firstEnemy);
+        setEnemyNumber(1);
+      }
     }
 
     init();
-  }, [character]);
+  }, []);
 
   useEffect(() => {
     if (!enemy) return;
@@ -62,7 +68,7 @@ export function useGameLoop() {
     const xpGain = Math.floor(enemyData.maxHealth * 0.2);
     addXP(xpGain);
 
-    const next = enemyData.level + 1;
+    const next = enemyNumber + 1;
     setEnemyNumber(next);
     spawnEnemy(next);
   }

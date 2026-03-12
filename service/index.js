@@ -34,7 +34,7 @@ apiRouter.post('/auth/create', async (req, res) => {
   const user = await createUser(req.body.email, req.body.password);
 
   players[user.email] = {
-    character: null,
+    enemy: null,
     experience: 0,
     enemyNumber: 1
   };

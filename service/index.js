@@ -2,6 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
+const { defaultCharacter } = require('../src/character/useCharacter.jsx');
 
 const app = express();
 const authCookieName = 'token';
@@ -34,6 +35,7 @@ apiRouter.post('/auth/create', async (req, res) => {
   const user = await createUser(req.body.email, req.body.password);
 
   players[user.email] = {
+    character: { ...defaultCharacter },
     enemy: null,
     experience: 0,
     enemyNumber: 1

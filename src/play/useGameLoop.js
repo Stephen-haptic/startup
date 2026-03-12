@@ -9,13 +9,13 @@ export function useGameLoop() {
   const [enemy, setEnemy] = useState(null);
   const [enemyNumber, setEnemyNumber] = useState(1);
 
-  const { character } = useCharacter();
+  const { character, setCharacter } = useCharacter();
   const { addXP, experience } = useExperience();
 
+  // Load everything from backend
   useEffect(() => {
     async function init() {
       const data = await loadGame();
-
       if (data.enemy) {
         setEnemy(data.enemy);
         setEnemyNumber(data.enemyNumber);
@@ -29,40 +29,37 @@ export function useGameLoop() {
     init();
   }, []);
 
+  // Save everything on change
   useEffect(() => {
-    if (!enemy) return;
-    saveGame(enemy, enemyNumber, experience);
-  }, [enemy, enemyNumber, experience]);
+    if (!character || !enemy) return;
+    saveGame({ character, enemy, enemyNumber, experience });
+  }, [character, enemy, enemyNumber, experience]);
 
+  // Passive damage loop
   useEffect(() => {
     const loop = setInterval(() => {
       if (!enemy || !character) return;
       const damage = calculatePassiveDamage(character);
       damageEnemy(damage);
     }, 1000);
-
     return () => clearInterval(loop);
   }, [enemy, character]);
 
   async function spawnEnemy(number) {
     const newEnemy = await generateEnemy(number);
     setEnemy(newEnemy);
-    setEnemyNumber(number);
-
-    saveGame(newEnemy, number, experience);
+    saveGame({ character, enemy: newEnemy, enemyNumber: number, experience });
   }
 
   function damageEnemy(amount) {
-    setEnemy((prev) => {
+    setEnemy(prev => {
       if (!prev) return prev;
-
       const newHealth = prev.health - amount;
 
       if (newHealth <= 0 && prev.health > 0) {
         handleEnemyDeath(prev);
         return { ...prev, health: 0 };
       }
-
       return { ...prev, health: newHealth };
     });
   }

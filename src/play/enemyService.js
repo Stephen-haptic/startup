@@ -18,9 +18,9 @@ export async function generateEnemy(monsterNumber) {
 
 async function generateName() {
   try {
-    const res = await fetch('https://random-word-api.herokuapp.com/word');
+    const res = await fetch('/api/enemy/name');
     const data = await res.json();
-    return capitalize(data[0]);
+    return data.name;
   } catch {
     const fallback = [
       'Goblin',

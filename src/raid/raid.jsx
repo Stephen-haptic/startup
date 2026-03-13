@@ -9,8 +9,10 @@ export function Raid() {
     joinRaid,
     bossHealth,
     bossMaxHealth,
+    bossName,
     countdown,
-    nextReward
+    nextReward,
+    players
   } = useRaid();
 
   // HH:MM:SS formatter
@@ -33,12 +35,11 @@ export function Raid() {
         <section className="raid-panel raid-left" id="raid-players">
           <h2>Players in Raid</h2>
           <ul>
-            <li>PlayerOne</li>
-            <li>PlayerTwo</li>
-            <li>PlayerThree</li>
-            <li>You</li>
+            {players.map((p) => (
+              <li key={p}>{p}</li>
+            ))}
+            {optedIn && <li>You</li>}
           </ul>
-          <p><em>Players will join and leave dynamically.</em></p>
         </section>
 
         {/* Center: Boss */}
@@ -57,7 +58,7 @@ export function Raid() {
             <>
               <h1>Public Raid</h1>
               <div className="boss-content">
-                <h2 id="enemy-name">World Boss Placeholder</h2>
+                <h2 id="enemy-name">{bossName}</h2>
                 <div id="enemy-visual">
                   <img src="placeholder-raid-boss.png" alt="Raid boss placeholder"/>
                 </div>

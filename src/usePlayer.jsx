@@ -103,6 +103,10 @@ export function usePlayer() {
     setEnemy(newEnemy);
   }
 
+  function addXP(amount) {
+    setExperience(xp => xp + amount);
+  }
+
   // MANUAL ATTACK
   function attack() {
     if (!enemy) return;
@@ -169,6 +173,7 @@ export function usePlayer() {
     buyStat,
     equipWeapon,
     applyWeaponUpgrade,
+    addXP,
     BASE_STAT_COST,
     STAT_COST_INCREMENT,
   };

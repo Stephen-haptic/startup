@@ -5,6 +5,18 @@ const BOSS_INTERVAL_MS = 2 * 60 * 60 * 1000; // 2 hours
 const BOSS_MAX_HEALTH = 10000; // placeholder
 const BOSS_XP_REWARD = 1000; // placeholder
 const RAID_REWARD_KEY = "nextRaidReward";
+const MOCK_PLAYERS = [
+  "IronKnight",
+  "ShadowMage",
+  "CrystalArcher",
+  "StormCaller",
+  "SilentBlade",
+  "VoidHunter",
+  "FrostWizard",
+  "BloodPaladin",
+  "ThunderFist",
+  "MoonDancer"
+];
 
 export function useRaid() {
   const { character, applyWeaponUpgrade, addXP } = usePlayer();
@@ -14,6 +26,54 @@ export function useRaid() {
   const [optedIn, setOptedIn] = useState(false);
   const [bossHealth, setBossHealth] = useState(BOSS_MAX_HEALTH);
   const [countdown, setCountdown] = useState(0);
+  const [bossName, setBossName] = useState("World Boss");
+  const [players, setPlayers] = useState([]);
+
+  useEffect(() => {
+    if (!bossActive) return;
+
+    async function fetchName() {
+      try {
+        const res = await fetch("/api/enemy/name");
+        const data = await res.json();
+        setBossName(data.name);
+      } catch {
+        setBossName("Ancient Titan");
+      }
+    }
+
+    fetchName();
+  }, [bossActive]);
+
+  // Fake Players
+  useEffect(() => {
+    if (!bossActive) {
+      setPlayers([]);
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setPlayers(prev => {
+        const copy = [...prev];
+
+        const action = Math.random();
+
+        if (action < 0.6 && copy.length < 6) {
+          // player joins
+          const name = MOCK_PLAYERS[Math.floor(Math.random() * MOCK_PLAYERS.length)];
+          if (!copy.includes(name)) copy.push(name);
+        } else if (copy.length > 0) {
+          // player leaves
+          copy.splice(Math.floor(Math.random() * copy.length), 1);
+        }
+
+        return copy;
+      });
+    }, 3000);
+
+    return () => clearInterval(interval);
+
+  }, [bossActive]);
 
   // Load next boss time
   useEffect(() => {
@@ -104,8 +164,10 @@ export function useRaid() {
     joinRaid,
     bossHealth,
     bossMaxHealth: BOSS_MAX_HEALTH,
+    bossName,
     countdown,
     nextReward,
+    players,
   };
 }
 
@@ -116,5 +178,5 @@ function calculatePassiveDamage(character) {
   const weaponStat = character.weapon.type === "wizardry" ? character.stats.wizardry : character.stats.strength;
   const allTradesFactor = character.stats.allTrades * 0.2;
 
-  return base + weaponStat + allTradesFactor;
+  return base + weaponStat + allTradesFactor + 1000;
 }

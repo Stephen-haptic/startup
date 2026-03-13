@@ -4,11 +4,11 @@ import { getWeaponDisplayName } from "./weaponDisplay";
 import "./character.css";
 
 export function Character() {
-    const { character, equipWeapon, buyStat, BASE_STAT_COST, STAT_COST_INCREMENT, experience, subtractXP } = usePlayer();
+    const { character, equipWeapon, buyStat, BASE_STAT_COST, STAT_COST_INCREMENT, experience } = usePlayer();
 
     // Handles buying a stat increase
     function handleStatIncrease(stat) {
-        buyStat(stat, experience, subtractXP);
+        buyStat(stat);
     }
 
     // Calculates the XP cost for the next stat increase

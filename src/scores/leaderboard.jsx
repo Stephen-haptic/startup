@@ -8,9 +8,8 @@ export function LeaderboardTable({ rows }) {
           <tr>
             <th>Rank</th>
             <th>Player</th>
-            <th>Total Experience</th>
+            <th>Level</th>
             <th>Enemies Slain</th>
-            <th>Bosses Slain</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>

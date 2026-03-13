@@ -29,21 +29,34 @@ export function usePlayer() {
   const [experience, setExperience] = useState(0);
   const [enemy, setEnemy] = useState(null);
   const [enemyNumber, setEnemyNumber] = useState(1);
+  const [enemiesSlain, setEnemiesSlain] = useState(0);
 
   // LOAD PLAYER
   useEffect(() => {
     async function init() {
       const data = await loadGame();
 
-      if (data.character) setCharacter(data.character);
-      if (data.experience) setExperience(data.experience);
+      // Ensure we always have a character object and stats
+      const loadedCharacter = data.character
+        ? { 
+            ...defaultCharacter,
+            ...data.character,
+            stats: { ...defaultCharacter.stats, ...(data.character.stats ?? {}) },
+            weapon: { ...defaultCharacter.weapon, ...(data.character.weapon ?? {}) },
+            weaponUpgrades: { ...defaultCharacter.weaponUpgrades, ...(data.character.weaponUpgrades ?? {}) }
+          }
+        : { ...defaultCharacter };
+
+      setCharacter(loadedCharacter);
+      setExperience(data.experience ?? 0);
 
       if (data.enemy) {
         setEnemy(data.enemy);
-        setEnemyNumber(data.enemyNumber);
+        setEnemyNumber(data.enemyNumber ?? 1);
       } else {
         const firstEnemy = await generateEnemy(1);
         setEnemy(firstEnemy);
+        setEnemyNumber(1);
       }
     }
 
@@ -59,8 +72,9 @@ export function usePlayer() {
       experience,
       enemy,
       enemyNumber,
+      enemiesSlain,
     });
-  }, [character, experience, enemy, enemyNumber]);
+  }, [character, experience, enemy, enemyNumber, enemiesSlain]);
 
   // PASSIVE DAMAGE LOOP
   useEffect(() => {
@@ -93,6 +107,8 @@ export function usePlayer() {
   // ENEMY DEATH
   async function handleEnemyDeath(enemyData) {
     const xpGain = Math.floor(enemyData.maxHealth * 0.2);
+
+    setEnemiesSlain(prev => prev + 1);
 
     setExperience(xp => xp + xpGain);
 
@@ -136,7 +152,7 @@ export function usePlayer() {
       level: prev.level + 1,
       stats: {
         ...prev.stats,
-        [stat]: prev.stats[stat] + 1,
+        [stat]: (prev.stats[stat] ?? 1) + 1,
       },
     }));
 

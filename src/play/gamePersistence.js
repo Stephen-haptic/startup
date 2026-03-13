@@ -21,6 +21,7 @@ export async function loadGame() {
       enemy: data.enemy ?? null,
       enemyNumber: data.enemyNumber ?? 1,
       experience: data.experience ?? 0,
+      enemiesSlain: data.enemiesSlain ?? 0
     };
   } catch {
     return {
@@ -28,6 +29,7 @@ export async function loadGame() {
       enemy: null,
       enemyNumber: 1,
       experience: 0,
+      enemiesSlain: 0
     };
   }
 }

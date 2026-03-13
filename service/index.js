@@ -2,7 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
-const { defaultCharacter } = require('../src/character/useCharacter.jsx');
+const { defaultCharacter } = require('./defaultCharacter.js');
 
 const app = express();
 const authCookieName = 'token';
@@ -38,7 +38,8 @@ apiRouter.post('/auth/create', async (req, res) => {
     character: { ...defaultCharacter },
     enemy: null,
     experience: 0,
-    enemyNumber: 1
+    enemyNumber: 1,
+    enemiesSlain: 0
   };
 
   setAuthCookie(res, user.token);
@@ -99,17 +100,15 @@ apiRouter.post('/player', verifyAuth, (req, res) => {
 // LEADERBOARD
 
 apiRouter.get('/scores', (_req, res) => {
-  res.send(scores);
-});
+  const leaderboard = Object.entries(players).map(([email, p]) => ({
+    name: email,
+    level: p.character?.level || 1,
+    enemies: p.enemiesSlain || 0
+  }));
 
-apiRouter.post('/scores', verifyAuth, (req, res) => {
-  scores.push(req.body);
+  leaderboard.sort((a, b) => b.enemies - a.enemies);
 
-  scores.sort((a, b) => b.xp - a.xp);
-
-  scores = scores.slice(0, 10);
-
-  res.send(scores);
+  res.send(leaderboard.slice(0, 10));
 });
 
 // THIRD PARTY API (Enemy Name)

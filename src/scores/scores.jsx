@@ -16,12 +16,11 @@ export function Scores({ userName }) {
   }, []);
 
   // Sort leaderboard
-  const sorted = [...scores].sort((a, b) => b.xp - a.xp);
+  const sorted = [...scores].sort((a, b) => (b.enemies ?? 0) - (a.enemies ?? 0));
 
   const topTen = sorted.slice(0, 10);
 
   const playerEntry = sorted.find(p => p.name === userName);
-
   const playerInTopTen = topTen.some(p => p.name === userName);
 
   const rows = [];

@@ -29,7 +29,6 @@ export function usePlayer() {
   const [experience, setExperience] = useState(0);
   const [enemy, setEnemy] = useState(null);
   const [enemyNumber, setEnemyNumber] = useState(1);
-  const [enemiesSlain, setEnemiesSlain] = useState(0);
 
   // LOAD PLAYER
   useEffect(() => {
@@ -72,9 +71,8 @@ export function usePlayer() {
       experience,
       enemy,
       enemyNumber,
-      enemiesSlain,
     });
-  }, [character, experience, enemy, enemyNumber, enemiesSlain]);
+  }, [character, experience, enemy, enemyNumber]);
 
   // PASSIVE DAMAGE LOOP
   useEffect(() => {
@@ -107,8 +105,6 @@ export function usePlayer() {
   // ENEMY DEATH
   async function handleEnemyDeath(enemyData) {
     const xpGain = Math.floor(enemyData.maxHealth * 0.2);
-
-    setEnemiesSlain(prev => prev + 1);
 
     setExperience(xp => xp + xpGain);
 

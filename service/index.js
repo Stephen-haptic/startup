@@ -39,7 +39,6 @@ apiRouter.post('/auth/create', async (req, res) => {
     enemy: null,
     experience: 0,
     enemyNumber: 1,
-    enemiesSlain: 0
   };
 
   setAuthCookie(res, user.token);
@@ -103,7 +102,7 @@ apiRouter.get('/scores', (_req, res) => {
   const leaderboard = Object.entries(players).map(([email, p]) => ({
     name: email,
     level: p.character?.level || 1,
-    enemies: p.enemiesSlain || 0
+    enemies: (p.enemyNumber ? p.enemyNumber - 1 : 0)
   }));
 
   leaderboard.sort((a, b) => b.enemies - a.enemies);

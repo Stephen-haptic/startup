@@ -116,14 +116,14 @@ For this deliverable I used JavaScript and React so the application can be playe
 
 ## 🚀 Service deliverable
 
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+For this deliverable added backend endpoints for saving player data and returns leaderboard info. This one was a real struggle for me, I hope I got it right.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [X] **Node.js/Express HTTP service** - Done
+- [X] **Static middleware for frontend** - Done
+- [X] **Calls to third party endpoints** - Calls for enemy and boss names, will probably polish a bit in future.
+- [X] **Backend service endpoints** - Stores player character data.
+- [X] **Frontend calls service endpoints** - Done
+- [X] **Supports registration, login, logout, and restricted endpoint** - Done, unless the backend is reset which I assume we will fix next.
 
 
 ## 🚀 DB deliverable

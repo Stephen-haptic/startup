@@ -1,12 +1,10 @@
 import React from "react";
-import { useCharacter } from "./useCharacter";
+import { usePlayer } from "../usePlayer";
 import { getWeaponDisplayName } from "./weaponDisplay";
-import { useExperience } from "../useExperience";
 import "./character.css";
 
 export function Character() {
-    const { character, equipWeapon, buyStat, BASE_STAT_COST, STAT_COST_INCREMENT } = useCharacter();
-    const { experience, subtractXP } = useExperience();
+    const { character, equipWeapon, buyStat, BASE_STAT_COST, STAT_COST_INCREMENT, experience, subtractXP } = usePlayer();
 
     // Handles buying a stat increase
     function handleStatIncrease(stat) {

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { useExperience } from "../useExperience";
-import { useCharacter } from "../character/useCharacter";
+import { usePlayer } from "../usePlayer";
 
 const BOSS_INTERVAL_MS = 2 * 60 * 60 * 1000; // 2 hours
 const BOSS_MAX_HEALTH = 10000; // placeholder
@@ -8,8 +7,7 @@ const BOSS_XP_REWARD = 1000; // placeholder
 const RAID_REWARD_KEY = "nextRaidReward";
 
 export function useRaid() {
-  const { addXP } = useExperience();
-  const { character, applyWeaponUpgrade } = useCharacter();
+  const { character, applyWeaponUpgrade, addXP } = usePlayer();
   const nextReward = getNextRaidReward();
 
   const [bossActive, setBossActive] = useState(false);

@@ -1,13 +1,11 @@
 import React from "react";
-import { useGameLoop } from "./useGameLoop";
+import { usePlayer } from "../usePlayer";
 import { Enemy } from "./enemy";
-import { useExperience } from "../useExperience";
 
 import "./play.css";
 
 export function Play() {
-  const { enemy, attack } = useGameLoop();
-  const { experience } = useExperience();
+  const { enemy, attack, experience } = usePlayer();
 
   return (
     <main className="play-main">

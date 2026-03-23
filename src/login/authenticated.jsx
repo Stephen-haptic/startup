@@ -4,7 +4,12 @@ import { useNavigate } from 'react-router-dom';
 export function Authenticated(props) {
   const navigate = useNavigate();
 
-  function logout() {
+  async function logout() {
+    await fetch('/api/auth/logout', {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+
     localStorage.removeItem('userName');
     props.onLogout();
   }

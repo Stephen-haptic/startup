@@ -4,7 +4,7 @@ import { usePlayer } from "../usePlayer";
 const BOSS_INTERVAL_MS = 2 * 60 * 60 * 1000; // 2 hours
 const BOSS_MAX_HEALTH = 10000; // placeholder
 const BOSS_XP_REWARD = 1000; // placeholder
-const RAID_REWARD_KEY = "nextRaidReward";
+
 const MOCK_PLAYERS = [
   "IronKnight",
   "ShadowMage",
@@ -20,7 +20,6 @@ const MOCK_PLAYERS = [
 
 export function useRaid() {
   const { character, applyWeaponUpgrade, addXP } = usePlayer();
-  const nextReward = getNextRaidReward();
 
   const [bossActive, setBossActive] = useState(false);
   const [optedIn, setOptedIn] = useState(false);
@@ -28,6 +27,7 @@ export function useRaid() {
   const [countdown, setCountdown] = useState(0);
   const [bossName, setBossName] = useState("World Boss");
   const [players, setPlayers] = useState([]);
+  const [nextReward, setNextReward] = useState("wizardry");
 
   useEffect(() => {
     if (!bossActive) return;
@@ -75,31 +75,37 @@ export function useRaid() {
 
   }, [bossActive]);
 
-  // Load next boss time
   useEffect(() => {
-    const saved = localStorage.getItem("nextBossTime");
-    const nextBossTime = saved ? Number(saved) : Date.now() + BOSS_INTERVAL_MS;
+    const interval = setInterval(async () => {
+      try {
+        const res = await fetch("/api/raid");
+        const data = await res.json();
 
-    const timer = setInterval(() => {
-      const now = Date.now();
-      if (now >= nextBossTime) {
-        setBossActive(true);
-        setCountdown(0);
-      } else {
-        setCountdown(Math.floor((nextBossTime - now) / 1000));
-      }
+        setBossActive(data.bossActive);
+        setBossHealth(data.bossHealth);
+        setNextReward(data.nextReward);
+
+        const remaining = Math.max(0, Math.floor((data.nextBossTime - Date.now()) / 1000));
+        setCountdown(remaining);
+      } catch {}
     }, 1000);
-
-    return () => clearInterval(timer);
+    return () => clearInterval(interval);
   }, []);
 
   // Passive damage loop
   useEffect(() => {
     if (!optedIn || !character) return;
 
-    const interval = setInterval(() => {
+    const interval = setInterval(async () => {
       const damage = calculatePassiveDamage(character);
-      setBossHealth(prev => Math.max(0, prev - damage));
+
+      try {
+        await fetch("/api/raid/damage", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ damage }),
+        });
+      } catch {}
     }, 1000);
 
     return () => clearInterval(interval);
@@ -109,7 +115,7 @@ export function useRaid() {
   useEffect(() => {
     if (bossHealth === 0 && optedIn) {
 
-      const rewardType = getNextRaidReward();
+      const rewardType = nextReward;
 
       alert(
         `Boss defeated!\n` +
@@ -118,40 +124,11 @@ export function useRaid() {
       );
 
       addXP(BOSS_XP_REWARD);
-
       applyWeaponUpgrade(rewardType);
 
-      advanceRaidReward(rewardType);
-
-      setBossActive(false);
       setOptedIn(false);
-      setBossHealth(BOSS_MAX_HEALTH);
-
-      localStorage.setItem(
-        "nextBossTime",
-        Date.now() + BOSS_INTERVAL_MS
-      );
     }
-  }, [bossHealth, optedIn, addXP, applyWeaponUpgrade]);
-
-  function getNextRaidReward() {
-    const saved = localStorage.getItem(RAID_REWARD_KEY);
-
-    if (!saved) {
-      localStorage.setItem(RAID_REWARD_KEY, "wizardry");
-      return "wizardry";
-    }
-
-    return saved;
-  }
-
-  function advanceRaidReward(current) {
-    const next = current === "wizardry"
-      ? "strength"
-      : "wizardry";
-
-    localStorage.setItem(RAID_REWARD_KEY, next);
-  }
+  }, [bossHealth, optedIn, nextReward, addXP, applyWeaponUpgrade]);
 
   function joinRaid() {
     if (!bossActive) return;

@@ -14,6 +14,14 @@ let users = [];
 let players = {};
 let scores = [];
 
+const BOSS_INTERVAL_MS = 10000; //* 60 * 60 * 1000;
+let raidState = {
+  bossActivate: false,
+  bossHealth: 10000,
+  nextBossTime : Date.now() + BOSS_INTERVAL_MS,
+  nextReward: "wizardry"
+}
+
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
@@ -108,6 +116,46 @@ apiRouter.get('/scores', (_req, res) => {
   leaderboard.sort((a, b) => b.enemies - a.enemies);
 
   res.send(leaderboard.slice(0, 10));
+});
+
+// RAID
+
+// Get raid state
+apiRouter.get('/raid', (_req, res) => {
+  const now = Date.now();
+
+  if (!raidState.bossActive && now >= raidState.nextBossTime) {
+    raidState.bossActive = true;
+    raidState.bossHealth = 10000;
+  }
+  res.send(raidState);
+});
+
+// Apply damage
+apiRouter.post('/raid/damage', (req, res) => {
+  if (!raidState.bossActive) {
+    return res.send(raidState);
+  }
+
+  const damage = req.body.damage || 0;
+
+  raidState.bossHealth = Math.max(0, raidState.bossHealth - damage);
+
+  if (raidState.bossHealth === 0) {
+    raidState.bossActive = false;
+
+    // Only set next spawn time ONCE
+    if (!raidState.nextBossTime || raidState.nextBossTime < Date.now()) {
+      raidState.nextBossTime = Date.now() + BOSS_INTERVAL_MS;
+
+      raidState.nextReward =
+        raidState.nextReward === "wizardry"
+          ? "strength"
+          : "wizardry";
+    }
+  }
+
+  res.send(raidState);
 });
 
 // THIRD PARTY API (Enemy Name)

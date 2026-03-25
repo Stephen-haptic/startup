@@ -11,12 +11,6 @@ const authCookieName = 'token';
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 const BOSS_INTERVAL_MS = 10000; //* 60 * 60 * 1000;
-let raidState = {
-  bossActivate: false,
-  bossHealth: 10000,
-  nextBossTime : Date.now() + BOSS_INTERVAL_MS,
-  nextReward: "wizardry"
-}
 
 // Middleware
 app.use(express.json());
@@ -115,19 +109,35 @@ apiRouter.get('/scores', async (_req, res) => {
 // RAID
 
 // Get raid state
-apiRouter.get('/raid', (_req, res) => {
+apiRouter.get('/raid', async (_req, res) => {
+  let raidState = await DB.getRaid();
+
+  if (!raidState) {
+    raidState = {
+      bossActive: false,
+      bossHealth: 10000,
+      nextBossTime: Date.now() + BOSS_INTERVAL_MS,
+      nextReward: "wizardry",
+    };
+  }
+
   const now = Date.now();
 
   if (!raidState.bossActive && now >= raidState.nextBossTime) {
     raidState.bossActive = true;
     raidState.bossHealth = 10000;
   }
+
+  await DB.saveRaid(raidState);
+
   res.send(raidState);
 });
 
 // Apply damage
-apiRouter.post('/raid/damage', (req, res) => {
-  if (!raidState.bossActive) {
+apiRouter.post('/raid/damage', async (req, res) => {
+  let raidState = await DB.getRaid();
+
+  if (!raidState || !raidState.bossActive) {
     return res.send(raidState);
   }
 
@@ -137,17 +147,15 @@ apiRouter.post('/raid/damage', (req, res) => {
 
   if (raidState.bossHealth === 0) {
     raidState.bossActive = false;
+    raidState.nextBossTime = Date.now() + BOSS_INTERVAL_MS;
 
-    // Only set next spawn time ONCE
-    if (!raidState.nextBossTime || raidState.nextBossTime < Date.now()) {
-      raidState.nextBossTime = Date.now() + BOSS_INTERVAL_MS;
-
-      raidState.nextReward =
-        raidState.nextReward === "wizardry"
-          ? "strength"
-          : "wizardry";
-    }
+    raidState.nextReward =
+      raidState.nextReward === "wizardry"
+        ? "strength"
+        : "wizardry";
   }
+
+  await DB.saveRaid(raidState);
 
   res.send(raidState);
 });

@@ -1,14 +1,24 @@
 export const WEAPON_NAMES = {
   wizardry: [
     "Wizard Staff",
-    // "Apprentice Staff",
-    // "Archmage Staff",
+    "Apprentice Staff",
+    "Lightning Staff",
+    "Warlock Staff",
+    "Solar Staff",
+    "Wand",
+    "Archmage Staff",
+    "Staff of the Magi",
   ],
 
   strength: [
     "Sword",
     "Knight Blade",
-    // "Dragon Slayer",
+    "Paladin Sword",
+    "Claymore",
+    "Holy Avenger",
+    "Sun Blade",
+    "Knife of the Kitchen",
+    "Dragon Slayer",
   ],
 };
 
@@ -33,10 +43,15 @@ export function getWeaponDisplayName(character, type) {
 
   const upgradeCount = getUpgradeCount(character, type);
 
-  const index = Math.min(
-    upgradeCount,
-    table.length - 1
-  );
+  const maxIndex = table.length - 1;
+  const index = Math.min(upgradeCount, maxIndex);
 
-  return table[index] ?? "Unnamed Weapon";
+  const baseName = table[index] ?? "Unnamed Weapon";
+
+  if (upgradeCount > maxIndex) {
+    const extra = upgradeCount - maxIndex;
+    return `${baseName} +${extra}`;
+  }
+
+  return baseName;
 }

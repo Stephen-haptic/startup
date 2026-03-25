@@ -24,7 +24,7 @@ app.use('/api', apiRouter);
 // AUTHENTICATION
 
 apiRouter.post('/auth/create', async (req, res) => {
-  if (await DB.getUser(req.body.email)) {
+  if (await findUser('email', req.body.email)) {
     return res.status(409).send({ msg: 'Existing user' });
   }
 
@@ -42,7 +42,7 @@ apiRouter.post('/auth/create', async (req, res) => {
 });
 
 apiRouter.post('/auth/login', async (req, res) => {
-  const user = await DB.getUser(req.body.email);
+  const user = await findUser('email', req.body.email);
 
   if (user && await bcrypt.compare(req.body.password, user.password)) {
     user.token = uuid.v4();
@@ -57,7 +57,7 @@ apiRouter.post('/auth/login', async (req, res) => {
 });
 
 apiRouter.delete('/auth/logout', async (req, res) => {
-  const user = await DB.getUserByToken(req.cookies[authCookieName]);
+  const user = await findUser('token', req.cookies[authCookieName]);
 
   if (user) {
     await DB.removeUserToken(user);
@@ -197,18 +197,20 @@ async function createUser(email, password) {
   const user = {
     email,
     password: passwordHash,
-    token: uuid.v4()
+    token: uuid.v4(),
   };
 
-  users.push(user);
+  await DB.addUser(user);
 
   return user;
 }
-
 async function findUser(field, value) {
   if (!value) return null;
 
-  return users.find((u) => u[field] === value);
+  if (field === 'token') {
+    return DB.getUserByToken(value);
+  }
+  return DB.getUser(value);
 }
 
 function setAuthCookie(res, authToken) {

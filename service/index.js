@@ -3,16 +3,12 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const { defaultCharacter } = require('./defaultCharacter.js');
+const DB = require("./database.js");
 
 const app = express();
 const authCookieName = 'token';
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
-
-// In-memory storage
-let users = [];
-let players = {};
-let scores = [];
 
 const BOSS_INTERVAL_MS = 10000; //* 60 * 60 * 1000;
 let raidState = {
@@ -34,23 +30,20 @@ app.use('/api', apiRouter);
 // AUTHENTICATION
 
 apiRouter.post('/auth/create', async (req, res) => {
-  const existing = await findUser('email', req.body.email);
-
-  if (existing) {
+  if (await DB.getUser(req.body.email)) {
     return res.status(409).send({ msg: 'Existing user' });
   }
 
   const user = await createUser(req.body.email, req.body.password);
 
-  players[user.email] = {
+  await DB.savePlayer(user.email, {
     character: { ...defaultCharacter },
     enemy: null,
     experience: 0,
     enemyNumber: 1,
-  };
+  });
 
   setAuthCookie(res, user.token);
-
   res.send({ email: user.email });
 });
 

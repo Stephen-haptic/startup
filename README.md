@@ -128,10 +128,10 @@ For this deliverable added backend endpoints for saving player data and returns 
 
 ## 🚀 DB deliverable
 
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+For this deliverable I save character progress on a per user basis as well as the raid information.
 
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+- [X] **Stores data in MongoDB** - Stores character and raid information.
+- [X] **Stores credentials in MongoDB** - Stores user and credentials.
 
 ## 🚀 WebSocket deliverable
 

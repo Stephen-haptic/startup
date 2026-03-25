@@ -88,28 +88,28 @@ const verifyAuth = async (req, res, next) => {
 
 // PLAYER DATA
 
-apiRouter.get('/player', verifyAuth, (req, res) => {
-  const player = players[req.user.email];
+apiRouter.get('/player', verifyAuth, async (req, res) => {
+  const player = await DB.getPlayer(req.user.email);
   res.send(player);
 });
 
-apiRouter.post('/player', verifyAuth, (req, res) => {
-  players[req.user.email] = req.body;
-  res.send(players[req.user.email]);
+apiRouter.post('/player', verifyAuth, async (req, res) => {
+  await DB.savePlayer(req.user.email, req.body);
+  res.send(req.body);
 });
 
 // LEADERBOARD
 
-apiRouter.get('/scores', (_req, res) => {
-  const leaderboard = Object.entries(players).map(([email, p]) => ({
-    name: email,
+apiRouter.get('/scores', async (_req, res) => {
+  const players = await DB.getLeaderboard();
+
+  const leaderboard = players.map((p) => ({
+    name: p.email,
     level: p.character?.level || 1,
-    enemies: (p.enemyNumber ? p.enemyNumber - 1 : 0)
+    enemies: (p.enemyNumber ? p.enemyNumber - 1 : 0),
   }));
 
-  leaderboard.sort((a, b) => b.enemies - a.enemies);
-
-  res.send(leaderboard.slice(0, 10));
+  res.send(leaderboard);
 });
 
 // RAID
